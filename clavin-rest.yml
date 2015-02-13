@@ -15,18 +15,12 @@ assets:
   overrides:
     /: src/main/resources/assets/
 
-# Logging settings.
 logging:
-
-  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: DEBUG
-
   loggers:
     io.dropwizard: INFO
-
-   # Capture ALL Logging and direct it to stderr. 
-   appenders:
-     - type: console
-       threshold: ALL
-       timeZone: UTC
-       target: stderr
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stderr
