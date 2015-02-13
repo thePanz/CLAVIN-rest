@@ -1,3 +1,5 @@
+# Created by Berico Technologies
+
 luceneDir: IndexDirectory
 maxHitDepth: 3
 maxContextWindow: 5
@@ -19,11 +21,11 @@ logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: DEBUG
   
-    loggers:
-    	io.dropwizard: INFO
+  loggers:
+   	io.dropwizard: INFO
   
-  # Capture ALL Logging and direct it to stderr. 
-  appenders:
+   # Capture ALL Logging and direct it to stderr. 
+   appenders:
     - type: console
       threshold: ALL
       timeZone: UTC
