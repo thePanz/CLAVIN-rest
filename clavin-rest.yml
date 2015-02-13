@@ -19,8 +19,4 @@ logging:
   level: DEBUG
   loggers:
     io.dropwizard: INFO
-  appenders:
-    - type: console
-      threshold: ALL
-      target: stderr
 
