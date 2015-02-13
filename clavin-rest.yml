@@ -20,7 +20,7 @@ logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: DEBUG
   loggers:
-   	io.dropwizard: INFO
+    io.dropwizard: INFO
    # Capture ALL Logging and direct it to stderr. 
    appenders:
      - type: console
