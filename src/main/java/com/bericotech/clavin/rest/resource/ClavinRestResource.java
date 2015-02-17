@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.InetAddress;
 import java.util.List;
 
 import com.bericotech.clavin.GeoParser;
@@ -44,31 +45,48 @@ public class ClavinRestResource {
     	
     	logger.debug("Start of POST Method for path '/geotag'.");
     	
+    	String ip = null;
+    	
+    	logger.debug("Trying to resolve IP Address.");
+    	try
+    	{
+    		ip = InetAddress.getLocalHost().toString(); 
+    		logger.debug("Resolved IP to: " + ip);
+    	}
+    	catch(Exception e)
+    	{
+    		logger.error("Unable to Resolve IP @POST '/geotag' with Error Message: " + e.getMessage()); 
+    		ip = "NULL";	
+    	}
     	
         ResolvedLocations result = null;
         
-        logger.debug("Entering Try/Catch Block for parsing 'text' @POST '/geotag'.");
+        logger.debug("[" + ip + "] Received Request Length: " + text.length());
+        
+        logger.debug("[" + ip + "] Entering Try/Catch Block for parsing 'text' @POST '/geotag'.");
         try {
-        	logger.debug("In Try Block, about to parse 'text' @POST '/geotag', returning 'List<ResolvedLocation>'.");
+        	logger.debug("[" + ip + "] In Try Block, about to parse 'text' @POST '/geotag', returning 'List<ResolvedLocation>'.");
             List<ResolvedLocation> resolvedLocations = parser.parse(text);
-            logger.debug("In Try Block, finished parsing 'text' @POST '/geotag'.");
+            logger.debug("[" + ip + "] In Try Block, finished parsing 'text' @POST '/geotag'.");
             
-            logger.debug("In Try Block, about to set result = 'ResolvedLocations' @POST '/geotag'.");
+            logger.debug("[" + ip + "] In Try Block, about to set result = 'ResolvedLocations' @POST '/geotag'.");
             result = new ResolvedLocations(resolvedLocations);
-            logger.debug("In Try Block, finished setting result = 'ResolvedLocations' @POST '/geotag'.");
+            logger.debug("[" + ip + "] In Try Block, finished setting result = 'ResolvedLocations' @POST '/geotag'.");
         
         } catch (Exception e) {
         	
-        	logger.debug("In Catch Block, an error has occured @POST '/geotag'.");
-        	logger.error("Error Message In Catch Block @POST '/geotag': " + e.getMessage()); 
+        	logger.debug("[" + ip + "] In Catch Block, an error has occured @POST '/geotag'.");
+        	logger.error("[" + ip + "] Error Message In Catch Block @POST '/geotag': " + e.getMessage()); 
         	e.printStackTrace();
             
-            logger.debug("In Catch Block, about to return @POST '/geotag'.");
+            logger.debug("[" + ip + "] In Catch Block, about to return @POST '/geotag'.");
             return Response.status(500).entity(e).build();
         }
-        logger.debug("Exiting Try/Catch Block for parsing 'text' @POST '/geotag'.");
+        logger.debug("[" + ip + "] Exiting Try/Catch Block for parsing 'text' @POST '/geotag'.");
       
-        logger.debug("End of POST Method for path '/geotag'; Returning...");
+        logger.debug("[" + ip + "] End of POST Method for path '/geotag'; Returning...");
+        
+        logger.debug("[" + ip + "] Returning ArrayList @POST '/geotag' of Size: " + result.Size());
         return Response.status(200).entity(result).build();
         
     }
@@ -82,31 +100,48 @@ public class ClavinRestResource {
     
     	logger.debug("Start of POST Method for path '/geotagmin'.");
     	
+    	String ip = null;
+    	
+    	logger.debug("Trying to resolve IP Address.");
+    	try
+    	{
+    		ip = InetAddress.getLocalHost().toString(); 
+    		logger.debug("Resolved IP to: " + ip);
+    	}
+    	catch(Exception e)
+    	{
+    		logger.error("Unable to Resolve IP @POST '/geotag' with Error Message: " + e.getMessage());  
+    		ip = "NULL";	
+    	}    	
+    	
         ResolvedLocationsMinimum result = null;
         
-        logger.debug("Entering Try/Catch Block for parsing 'text' @POST '/geotagmin'.");
+        logger.debug("[" + ip + "] Received Request Length: " + text.length());
+        
+        logger.debug("[" + ip + "] Entering Try/Catch Block for parsing 'text' @POST '/geotagmin'.");
         try {
             
-        	logger.debug("In Try Block, about to parse 'text' @POST '/geotagmin', returning 'List<ResolvedLocation>'.");
+        	logger.debug("[" + ip + "] In Try Block, about to parse 'text' @POST '/geotagmin', returning 'List<ResolvedLocation>'.");
         	List<ResolvedLocation> resolvedLocations = parser.parse(text);
-        	logger.debug("In Try Block, finished parsing 'text' @POST '/geotagmin'.");
+        	logger.debug("[" + ip + "] In Try Block, finished parsing 'text' @POST '/geotagmin'.");
         	
-        	logger.debug("In Try Block, about to set result = 'ResolvedLocations' @POST '/geotagmin'.");
+        	logger.debug("[" + ip + "] In Try Block, about to set result = 'ResolvedLocations' @POST '/geotagmin'.");
             result = new ResolvedLocationsMinimum(resolvedLocations);
-            logger.debug("In Try Block, finished setting result = 'ResolvedLocations' @POST '/geotagmin'.");
+            logger.debug("[" + ip + "] In Try Block, finished setting result = 'ResolvedLocations' @POST '/geotagmin'.");
         
         } catch (Exception e) {
         	
-        	logger.debug("In Catch Block, an error has occured @POST '/geotagmin'.");
-        	logger.error("Error Message In Catch Block @POST '/geotagmin': " + e.getMessage()); 
+        	logger.debug("[" + ip + "] In Catch Block, an error has occured @POST '/geotagmin'.");
+        	logger.error("[" + ip + "] Error Message In Catch Block @POST '/geotagmin': " + e.getMessage()); 
             e.printStackTrace();
             
-            logger.debug("In Catch Block, about to return @POST '/geotagmin'.");
+            logger.debug("[" + ip + "] In Catch Block, about to return @POST '/geotagmin'.");
             return Response.status(500).entity(e).build();
         }
-        logger.debug("Exiting Try/Catch Block for parsing 'text' @POST '/geotagmin'.");
+        logger.debug("[" + ip + "] Exiting Try/Catch Block for parsing 'text' @POST '/geotagmin'.");
       
-        logger.debug("End of POST Method for path '/geotagmin'; Returning...");
+        logger.debug("[" + ip + "] End of POST Method for path '/geotagmin'; Returning...");
+        logger.debug("[" + ip + "] Returning ArrayList @POST '/geotagmin' of Size: " + result.Size());       
         return Response.status(200).entity(result).build();
         
     }

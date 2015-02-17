@@ -22,4 +22,8 @@ public class ResolvedLocationsMinimum {
 	public List<ResolvedLocationMinimum> getResolvedLocationsMinimum() {
 		return resolvedLocationsMinimum;
 	}
+	
+	public int Size() {
+		return this.resolvedLocationsMinimum.size();
+	}	
 }

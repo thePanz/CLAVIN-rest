@@ -21,4 +21,8 @@ public class ResolvedLocations {
 	public List<ResolvedLocation> getResolvedLocations() {
 		return resolvedLocations;
 	}
+	
+	public int Size() {
+		return this.resolvedLocations.size();
+	}
 }
