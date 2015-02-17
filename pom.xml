@@ -164,4 +164,16 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <repositories>
+    <repository>
+      <id>berico-snapshot</id>
+      <name>Berico Snapshots</name>
+      <url>http://nexus.bericotechnologies.com/content/repositories/internal-snapshots</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>
