@@ -51,7 +51,7 @@ public class ClavinRestResource {
     	try
     	{
     		ip = InetAddress.getLocalHost().toString(); 
-    		logger.debug("Resolved IP to: " + ip);
+    		logger.debug("Resolved @POST '/geotag' IP to: " + ip);
     	}
     	catch(Exception e)
     	{
@@ -106,11 +106,11 @@ public class ClavinRestResource {
     	try
     	{
     		ip = InetAddress.getLocalHost().toString(); 
-    		logger.debug("Resolved IP to: " + ip);
+    		logger.debug("Resolved @POST '/geotagmin' IP to: " + ip);
     	}
     	catch(Exception e)
     	{
-    		logger.error("Unable to Resolve IP @POST '/geotag' with Error Message: " + e.getMessage());  
+    		logger.error("Unable to Resolve IP @POST '/geotagmin' with Error Message: " + e.getMessage());  
     		ip = "NULL";	
     	}    	
     	
