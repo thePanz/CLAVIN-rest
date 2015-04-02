@@ -34,6 +34,10 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
 
     @JsonProperty
     private String alternateNamesFile;
+
+    @NotNull
+    @JsonProperty
+    private Boolean useStandfordExtractor;
     
     @Valid
     @NotNull
@@ -59,6 +63,10 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
 	public AssetsConfiguration getAssetsConfiguration() {
 		return assets;
 	}
+
+    public Boolean getUseStandfordExtractor() {
+        return useStandfordExtractor;
+    }
     
     public String[] getGazetteerFiles() {
         if (gazetteerFiles == null)

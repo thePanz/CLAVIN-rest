@@ -1,11 +1,9 @@
 package com.bericotech.clavin.rest;
 
-import java.io.File;
 import java.io.IOException;
 
 import com.bericotech.clavin.ClavinException;
-import com.bericotech.clavin.gazetteer.query.Gazetteer;
-import com.bericotech.clavin.gazetteer.query.LuceneGazetteer;
+import com.bericotech.clavin.GeoParserFactory;
 import com.bericotech.clavin.rest.command.IndexCommand;
 import org.apache.lucene.queryparser.classic.ParseException;
 
@@ -40,13 +38,18 @@ public class ClavinRestService extends Service<ClavinRestConfiguration> {
         final String luceneDir = configuration.getLuceneDir();
         final Integer maxHitDepth = configuration.getMaxHitDepth();
         final Integer maxContextWindow = configuration.getMaxContextWindow();
-        // final Boolean fuzzy = configuration.getFuzzy();
-             
-        Gazetteer gazetteer = new LuceneGazetteer(new File(luceneDir));
+        final Boolean fuzzy = configuration.getFuzzy();
+        final Boolean useNERDExtraction = configuration.getUseStandfordExtractor();
 
-        StanfordExtractor extractor = new StanfordExtractor();  	   	
-        GeoParser parser = new GeoParser(extractor, gazetteer, maxHitDepth, maxContextWindow, false);
-        
+        GeoParser parser = null;
+        if (configuration.getUseStandfordExtractor() == true) {
+            StanfordExtractor extractor = new StanfordExtractor();
+            parser = GeoParserFactory.getDefault(luceneDir, extractor, maxHitDepth, maxContextWindow, fuzzy);
+        }
+        else {
+            parser = GeoParserFactory.getDefault(luceneDir, maxHitDepth, maxContextWindow, fuzzy);
+        }
+
         environment.addResource(new ClavinRestResource(parser));
     }
 
