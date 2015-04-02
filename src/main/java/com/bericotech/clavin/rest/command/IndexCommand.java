@@ -1,6 +1,7 @@
 package com.bericotech.clavin.rest.command;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.bericotech.clavin.index.IndexDirectoryBuilder;
@@ -27,8 +28,8 @@ public class IndexCommand extends ConfiguredCommand<ClavinRestConfiguration> {
 
         List<String> argsList = new ArrayList<String>();
 
-        if (!configuration.getGazetteerFiles().isEmpty()) {
-            argsList.add("-gazetteer-files=" + configuration.getGazetteerFiles());
+        for (String gazetteer : configuration.getGazetteerFiles()) {
+            argsList.add("-gazetteer-files=" + gazetteer);
         }
         if (!configuration.getAlternateNamesFile().isEmpty()) {
             argsList.add("-alt-names-file=" + configuration.getAlternateNamesFile());

@@ -2,6 +2,7 @@ package com.bericotech.clavin.rest;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.DefaultValue;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -29,7 +30,7 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
     private Boolean fuzzy;
 
     @JsonProperty
-    private String gazetteerFiles;
+    private String[] gazetteerFiles;
 
     @JsonProperty
     private String alternateNamesFile;
@@ -59,11 +60,15 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
 		return assets;
 	}
     
-    public String getGazetteerFiles() {
+    public String[] getGazetteerFiles() {
+        if (gazetteerFiles == null)
+            return new String[]{""};
         return gazetteerFiles;
     }
 
     public String getAlternateNamesFile() {
+        if (alternateNamesFile == null)
+            return "";
         return alternateNamesFile;
     }
     
