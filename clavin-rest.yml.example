@@ -3,6 +3,9 @@ maxHitDepth: 3
 maxContextWindow: 5
 fuzzy: false 
 
+# The GeoNames files (allCountries.txt and alternateNames.txt) must be present before indexing
+gazetteerFiles: allCountries.txt
+alternateNamesFile: alternateNames.txt
 
 http:
   port: 9090
