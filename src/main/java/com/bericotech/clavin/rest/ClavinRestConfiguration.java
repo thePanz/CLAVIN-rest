@@ -26,7 +26,13 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
     
     @NotNull
     @JsonProperty
-    private Boolean fuzzy; 
+    private Boolean fuzzy;
+
+    @JsonProperty
+    private String gazetteerFiles;
+
+    @JsonProperty
+    private String alternateNamesFile;
     
     @Valid
     @NotNull
@@ -52,5 +58,13 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
 	public AssetsConfiguration getAssetsConfiguration() {
 		return assets;
 	}
+    
+    public String getGazetteerFiles() {
+        return gazetteerFiles;
+    }
+
+    public String getAlternateNamesFile() {
+        return alternateNamesFile;
+    }
     
 }
