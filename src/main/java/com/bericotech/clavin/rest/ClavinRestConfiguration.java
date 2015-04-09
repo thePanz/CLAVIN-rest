@@ -35,9 +35,11 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
     @JsonProperty
     private String alternateNamesFile;
 
-    @NotNull
     @JsonProperty
-    private Boolean useStandfordExtractor;
+    private Boolean useStandfordExtractor; // Default TRUE
+
+    @JsonProperty
+    private Boolean useNERExtraction; // Default TRUE
     
     @Valid
     @NotNull
@@ -65,6 +67,9 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
 	}
 
     public Boolean getUseStandfordExtractor() {
+        if (useStandfordExtractor == null) {
+            return true;
+        }
         return useStandfordExtractor;
     }
     
@@ -79,5 +84,11 @@ public class ClavinRestConfiguration extends Configuration implements AssetsBund
             return "";
         return alternateNamesFile;
     }
-    
+
+    public boolean getUseNERExtraction() {
+        if (useNERExtraction == null) {
+            return true;
+        }
+        return useNERExtraction;
+    }
 }

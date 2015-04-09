@@ -2,6 +2,7 @@ luceneDir: IndexDirectory
 maxHitDepth: 3
 maxContextWindow: 5
 fuzzy: false
+useNERExtraction: true
 useStandfordExtractor: true
 
 # The GeoNames files (allCountries.txt and alternateNames.txt) must be present before indexing

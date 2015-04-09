@@ -14,8 +14,7 @@ import com.bazaarvoice.dropwizard.assets.ConfiguredAssetsBundle;
 import com.bericotech.clavin.GeoParser;
 import com.bericotech.clavin.nerd.StanfordExtractor;
 import com.bericotech.clavin.rest.resource.ClavinRestResource;
-
-
+import org.panz.extractor.SimpleExtractor;
 
 
 public class ClavinRestService extends Service<ClavinRestConfiguration> {
@@ -39,10 +38,12 @@ public class ClavinRestService extends Service<ClavinRestConfiguration> {
         final Integer maxHitDepth = configuration.getMaxHitDepth();
         final Integer maxContextWindow = configuration.getMaxContextWindow();
         final Boolean fuzzy = configuration.getFuzzy();
-        final Boolean useNERDExtraction = configuration.getUseStandfordExtractor();
 
         GeoParser parser = null;
-        if (configuration.getUseStandfordExtractor() == true) {
+        if (configuration.getUseNERExtraction() == false) {
+            SimpleExtractor extractor = new SimpleExtractor();
+            parser = GeoParserFactory.getDefault(luceneDir, extractor, maxHitDepth, maxContextWindow, fuzzy);
+        } else if (configuration.getUseStandfordExtractor() == true) {
             StanfordExtractor extractor = new StanfordExtractor();
             parser = GeoParserFactory.getDefault(luceneDir, extractor, maxHitDepth, maxContextWindow, fuzzy);
         }
